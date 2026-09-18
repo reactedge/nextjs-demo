@@ -3,7 +3,7 @@ export class RuntimeConfigBuilder {
         return {
             "integrations": {
                 "magentoGraphql": {
-                    "api": "https://mageos-docker.magsite.co.uk/graphql"
+                    "api": `${process.env.MAGENTO_URL}/graphql`
                 }
             },
             "context": {
