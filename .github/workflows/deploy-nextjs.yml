@@ -53,6 +53,18 @@ jobs:
             ./nextjs-frontend/ \
             ${{ secrets.WIDGET_SSH_USER }}@${{ secrets.WIDGET_SSH_HOST }}:/var/www/nextjsdemo/nextjs-frontend/
 
+      - name: Create ReactEdge directory
+        run: |
+          ssh ${{ secrets.WIDGET_SSH_USER }}@${{ secrets.WIDGET_SSH_HOST }} \
+            "mkdir -p /var/www/nextjsdemo/reactedge"
+
+      - name: Publish ReactEdge artifact
+        run: |
+          rsync -avz \
+            --delete \
+            ./reactedge/ \
+            ${{ secrets.WIDGET_SSH_USER }}@${{ secrets.WIDGET_SSH_HOST }}:/var/www/nextjsdemo/reactedge/    
+
       - name: Install, build and restart Next.js Demo
         run: |
           ssh ${{ secrets.WIDGET_SSH_USER }}@${{ secrets.WIDGET_SSH_HOST }} << 'EOF'
