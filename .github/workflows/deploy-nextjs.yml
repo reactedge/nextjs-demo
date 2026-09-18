@@ -1,4 +1,4 @@
-name: Publish OAuth API
+name: Publish NextJS
 
 on:
   push:
