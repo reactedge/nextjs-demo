@@ -22,12 +22,6 @@ jobs:
           cache: npm
           cache-dependency-path: nextjs-frontend/package-lock.json
 
-      - name: Validate Next.js API
-        working-directory: nextjs-frontend
-        run: |
-          npm ci
-          npm run build
-
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
@@ -68,6 +62,8 @@ jobs:
       - name: Install, build and restart Next.js Demo
         run: |
           ssh ${{ secrets.WIDGET_SSH_USER }}@${{ secrets.WIDGET_SSH_HOST }} << 'EOF'
+            set -e
+          
             cd /var/www/nextjsdemo/nextjs-frontend
 
             npm ci
