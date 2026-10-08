@@ -1,6 +1,6 @@
 import {list} from "@keystone-6/core";
 import {allowAll} from "@keystone-6/core/access";
-import {password, text, checkbox, select, timestamp} from "@keystone-6/core/fields";
+import {password, text, checkbox, select, multiselect, timestamp} from "@keystone-6/core/fields";
 import { graphql } from '@keystone-6/core';
 
 const commonPasswords = [
@@ -29,6 +29,13 @@ export const User = list({
                 { label: 'Apple', value: 'apple' },
             ],
             defaultValue: 'credentials',
+        }),
+        access: multiselect({
+            type: 'string',
+            options: [
+                { label: 'Seller', value: 'seller' },
+            ],
+            defaultValue: [],
         }),
         // the user's password, used as the secret field for authentication
         //   should not be publicly visible
