@@ -2,12 +2,13 @@
 
 import {createContext, ReactNode, useCallback, useContext, useEffect} from "react";
 import {useImmer} from "use-immer";
+import type {UserAccess} from "@/app/types/keystone";
 
 export type SessionUser = {
     id: string;
     email: string;
     name: string;
-    access: string[];
+    access: UserAccess[];
 };
 
 export interface UserStateData {
@@ -45,7 +46,9 @@ const UserStateProvider: React.FC<UserStateProviderProps> = ({ children }) => {
 
         setState(draft => {
             draft.user = user
-                ? { ...user, access: Array.isArray(user.access) ? user.access : [] }
+                ? { ...user, access: Array.isArray(user.access)
+                    ? user.access.filter((access): access is UserAccess => access === 'seller')
+                    : [] }
                 : null;
         });
     }, [setState]);

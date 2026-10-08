@@ -1,11 +1,13 @@
 import {Profile} from "passport-google-oauth20";
 
+export type UserAccess = 'seller';
+
 export interface KeystoneUser {
     id: string;
     email: string;
     name: string;
     provider?: 'credentials' | 'google' | 'apple';
-    access: string[];
+    access: UserAccess[];
 }
 
 type KeystoneUpdateUserResponse = {
