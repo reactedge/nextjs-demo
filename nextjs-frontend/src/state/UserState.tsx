@@ -57,6 +57,14 @@ const UserStateProvider: React.FC<UserStateProviderProps> = ({ children }) => {
         void fetchUser();
     }, [fetchUser]);
 
+    // Refresh the session after returning to the page to pick up Keystone
+    // access changes. Server-side authorisation must still check fresh access.
+    useEffect(() => {
+        const refreshOnFocus = () => { void fetchUser(); };
+        window.addEventListener('focus', refreshOnFocus);
+        return () => window.removeEventListener('focus', refreshOnFocus);
+    }, [fetchUser]);
+
     return <LocalStateProvider
         value={{
             refresh: fetchUser,
