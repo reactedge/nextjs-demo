@@ -5,6 +5,7 @@ export interface KeystoneUser {
     email: string;
     name: string;
     provider?: 'credentials' | 'google' | 'apple';
+    access: string[];
 }
 
 type KeystoneUpdateUserResponse = {
@@ -33,7 +34,8 @@ export const createOrUpdateUser = async (profile: Profile) => {
                     id
                     email
                     name
-                    provider  
+                    provider
+                    access
                 }
               }
             `,
@@ -71,7 +73,8 @@ export const getKeystoneUserById = async (id: string) => {
                     id
                     email
                     name
-                    provider 
+                    provider
+                    access
                   }
                 }
             `,
@@ -111,7 +114,8 @@ export async function fetchKeystoneUserByEmailAndPassword(email: string, passwor
                 id
                 email
                 name
-                provider     
+                provider
+                access
               }
             }
             ... on UserAuthenticationWithPasswordFailure {

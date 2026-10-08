@@ -7,6 +7,7 @@ export type SessionUser = {
     id: string;
     email: string;
     name: string;
+    access: string[];
 };
 
 export interface UserStateData {
@@ -40,8 +41,12 @@ const UserStateProvider: React.FC<UserStateProviderProps> = ({ children }) => {
         })
         const json = await res.json();
 
+        const user = json.user as SessionUser | null | undefined;
+
         setState(draft => {
-            draft.user = json.user ?? null;
+            draft.user = user
+                ? { ...user, access: Array.isArray(user.access) ? user.access : [] }
+                : null;
         });
     }, [setState]);
 
