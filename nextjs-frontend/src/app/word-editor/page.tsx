@@ -1,8 +1,10 @@
 import CheckLogin from "@/components/auth/CheckLogin";
-import AccessCheckCard from "@/components/common/AccessCheckCard";
+import Editor from "@/components/common/Editor";
 
 export default function WordEditorPage() {
-    return <CheckLogin>
-            <AccessCheckCard />
+    return (
+        <CheckLogin>
+            <Editor />
         </CheckLogin>
+    );
 }
