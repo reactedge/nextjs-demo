@@ -40,6 +40,7 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@reactedge/widget-createlisting": "file:../reactedge/release/source/createlisting/",
     "@reactedge/widget-editorword": "file:../reactedge/release/source/editorword/",
     "@reactedge/widget-megamenu": "file:../reactedge/release/source/megamenu/",
     "@reactedge/widget-productgallery": "file:../reactedge/release/source/productgallery",
