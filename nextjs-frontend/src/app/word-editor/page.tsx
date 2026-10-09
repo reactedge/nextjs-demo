@@ -1,10 +1,12 @@
 import CheckLogin from "@/components/auth/CheckLogin";
-import Editor from "@/components/common/Editor";
+import Usp from "@/components/reactedge/Usp";
+import Dashboard from "@/components/Dashboard";
 
 export default function WordEditorPage() {
     return (
         <CheckLogin>
-            <Editor />
+            <Usp />
+            <Dashboard />
         </CheckLogin>
     );
 }
