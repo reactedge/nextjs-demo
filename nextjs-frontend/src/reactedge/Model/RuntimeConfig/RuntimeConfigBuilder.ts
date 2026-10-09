@@ -13,6 +13,8 @@ export interface ReactEdgeRuntimeConfig {
         readonly storeCode: string;
         readonly sku: string;
         readonly category: string;
+        /** Temporary one-user/one-seller mapping for CreateListing. */
+        readonly sellerId?: string;
     };
     /**
      * Presentation-only identity snapshot. The client can tamper with it.
@@ -35,7 +37,13 @@ export class RuntimeConfigBuilder {
             context: {
                 storeCode: "default",
                 sku: "WJ12",
-                category: "tops-men"
+                category: "tops-men",
+                // Temporary integration: treat an authenticated seller's
+                // Keystone user ID as the seller ID expected by CreateListing.
+                // Browser context is not an authorisation decision.
+                ...(user?.id && user.access.includes('seller')
+                    ? { sellerId: user.id }
+                    : {})
             },
             ...(user ? {
                 identity: {
