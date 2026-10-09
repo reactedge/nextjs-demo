@@ -1,6 +1,7 @@
 'use client';
 
 import { redirect } from 'next/navigation';
+import {loginUrlForCurrentPage} from '@/lib/loginReturnTo';
 import { useUserState } from '@/state/UserState';
 import {type ReactNode, useEffect} from 'react';
 
@@ -13,7 +14,7 @@ export default function CheckLogin({ children }: GateLoginProps) {
 
     useEffect(() => {
         if (user === null) {
-            redirect('/auth/login');
+            redirect(loginUrlForCurrentPage());
         }
     }, [user]);
 
