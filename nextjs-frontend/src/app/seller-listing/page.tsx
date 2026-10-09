@@ -1,8 +1,10 @@
 import CheckLogin from "@/components/auth/CheckLogin";
-import AccessCheckCard from "@/components/common/AccessCheckCard";
+import CreateListing from "@/components/reactedge/CreateListing";
 
 export default function SellerListingPage() {
-    return <CheckLogin>
-            <AccessCheckCard />
+    return (
+        <CheckLogin>
+            <CreateListing />
         </CheckLogin>
+    );
 }

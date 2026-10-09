@@ -1,18 +1,9 @@
-import ReactEdgeStyles from "@/reactedge/components/ReactEdgeStyles";
-import {WidgetResourceResolver} from "@/reactedge/Model/widget-resource-resolver";
-import {ProductGalleryClient} from "@/components/reactedge/ProductGalleryClient";
+import CreateListingClient from "@/components/reactedge/CreateListingClient";
 
-export default async function ProductGallery() {
-    const resources =
-        await new WidgetResourceResolver().resolve("createlisting");
-
-    return (
-        <>
-            <ReactEdgeStyles css={resources.css}/>
-            <ProductGalleryClient
-                ssrHtml={resources?.html ?? ""}
-                bootstrap={resources?.bootstrap}
-            />
-        </>
-    );
+/**
+ * CreateListing is CSR-only (SSR strategy: disabled).
+ * Its widget injects CSS into a shadow root during the client mount.
+ */
+export default function CreateListing() {
+    return <CreateListingClient />;
 }
