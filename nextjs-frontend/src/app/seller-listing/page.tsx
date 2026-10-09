@@ -1,5 +1,5 @@
 import CheckLogin from "@/components/auth/CheckLogin";
-import CreateListing from "@/components/reactedge/CreateListing";
+import CreateListing from "@/components/common/CreateListing";
 
 export default function SellerListingPage() {
     return (
