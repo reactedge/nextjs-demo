@@ -4,23 +4,40 @@ import { useEffect, useRef } from "react";
 import { Widget as CmsBlockWidget } from "@reactedge/widget-cmsblock";
 import { useWidgetManifest } from "@/reactedge/hooks/useWidgetManifest";
 
-export default function CmsBlockClient() {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const mounted = useRef(false);
+type Props = {
+    ssrHtml: string;
+    bootstrap?: unknown;
+};
+
+export function CmsBlockClient({
+      ssrHtml,
+      bootstrap,
+  }: Props) {
+    const widgetRef = useRef<HTMLDivElement>(null);
     const manifest = useWidgetManifest("cmsblock");
 
     useEffect(() => {
-        const container = containerRef.current;
-        if (!container || !manifest?.contract || mounted.current) {
+        if (
+            !widgetRef.current ||
+            !manifest?.contract
+        ) {
             return;
         }
 
-        mounted.current = true;
         CmsBlockWidget({
-            container,
+            container: widgetRef.current,
             contract: manifest.contract,
+            bootstrap,
+            hydrate: true
         });
-    }, [manifest]);
+    }, [manifest, bootstrap]);
 
-    return <div ref={containerRef} />;
+    return (
+        <div
+            ref={widgetRef}
+            dangerouslySetInnerHTML={{
+                __html: ssrHtml,
+            }}
+        />
+    );
 }

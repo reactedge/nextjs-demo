@@ -31,7 +31,7 @@ export class RuntimeConfigBuilder {
         return {
             integrations: {
                 magentoGraphql: {
-                    api: `${process.env.MAGENTO_URL}/graphql`
+                    api: `${process.env.NEXT_PUBLIC_MAGENTO_URL}/graphql`
                 }
             },
             context: {
