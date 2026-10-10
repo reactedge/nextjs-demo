@@ -1,12 +1,9 @@
-import CheckLogin from "@/components/auth/CheckLogin";
-import CmsBlock from "@/components/reactedge/CmsBlock";
+import CmsBlockPublished from "@/components/reactedge/CmsBlockPublished";
 
 export default function CmsBlockPage() {
     return (
-        <CheckLogin>
-            <main className="m-5">
-                <CmsBlock />
-            </main>
-        </CheckLogin>
+        <main className="m-5">
+            <CmsBlockPublished />
+        </main>
     );
 }

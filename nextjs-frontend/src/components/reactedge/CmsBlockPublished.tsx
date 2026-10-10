@@ -63,7 +63,7 @@ export default function CmsBlockPublished() {
             {loading && <p role="status">Loading published content…</p>}
             {!loading && error && <p role="status">{error}</p>}
             {!loading && !error && !published && (
-                <p role="status">No published CMS block is available yet.</p>
+                <p role="status">The published CMS block is temporarily unavailable.</p>
             )}
             {published && (
                 <iframe
