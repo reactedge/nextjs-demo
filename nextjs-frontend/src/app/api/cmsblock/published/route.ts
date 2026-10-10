@@ -7,11 +7,13 @@ type PublishedRevision = {
 };
 
 export async function GET() {
-    const serviceUrl = (
+    let serviceUrl =
         process.env.CMSBLOCK_SERVICE_URL ??
         process.env.VITE_CMSBLOCK_URL ??
-        "http://127.0.0.1:4190"
-    ).replace(/\\/+$/, "");
+        "http://127.0.0.1:4190";
+    while (serviceUrl.endsWith("/")) {
+        serviceUrl = serviceUrl.slice(0, -1);
+    }
 
     try {
         const response = await fetch(
