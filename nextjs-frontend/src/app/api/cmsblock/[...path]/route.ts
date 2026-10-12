@@ -30,7 +30,7 @@ async function proxy(request: Request, context: RouteContext, method: string): P
 
     try {
         const serviceUrl = new URL(
-            process.env.CMSBLOCK_API_INTERNAL_URL || "http://127.0.0.1:4191",
+            process.env.CMSBLOCK_API_INTERNAL_URL || "http://127.0.0.1:4190",
         );
         const servicePrefix = serviceUrl.pathname.replace(/\/+$/, "");
         serviceUrl.pathname =
