@@ -11,6 +11,21 @@ export type SessionUser = {
     access: UserAccess[];
 };
 
+// A local fixture for exercising seller widgets without a Keystone session.
+// It is enabled only in development and is never an authorization credential.
+function developmentSeller(): SessionUser | null {
+    if (process.env.NODE_ENV !== "development" || process.env.NEXT_PUBLIC_REACTEDGE_DEV_SELLER !== "1") {
+        return null;
+    }
+
+    return {
+        id: "dev-seller",
+        email: "dev-seller@localhost",
+        name: "Development Seller",
+        access: ["seller"],
+    };
+}
+
 export interface UserStateData {
     user: SessionUser | null | undefined;
 }
@@ -49,7 +64,7 @@ const UserStateProvider: React.FC<UserStateProviderProps> = ({ children }) => {
                 ? { ...user, access: Array.isArray(user.access)
                     ? user.access.filter((access): access is UserAccess => access === 'seller' || access === 'cmseditor')
                     : [] }
-                : null;
+                : developmentSeller();
         });
     }, [setState]);
 
